@@ -1,8 +1,12 @@
 class Game
 
-	attr_accessor :win, :statut
+	attr_accessor  :statut, :actual_array
 	
 	def initialize
+	my_board = Board.new
+	@actual_array = my_board.boardcase_array
+	#@other_player = other_player
+	#@first_player = first_player
 	@statut = ["Pas commencé","en cours","fini"]
 	puts "WELCOME"
 	puts "-"*50
@@ -51,53 +55,61 @@ class Game
 	puts
 	puts statut[0]
 	puts
+	#my_board.boardcase_array.each do |i|
+	#puts i.position
+	#end
+	puts my_board.board_show
+	puts
 	puts "-"*50
 	puts
-	end
-
-
-
-
-
-
-
-
-
-	def test
-	board = Board.new
-	player_1 = Player.new("Franck")
-	player_2 = Player.new("Yvon")
-	statut = ["Pas commencé","en cours","fini"]
-	
-	puts "Bienvenue"
-	puts player_1.nom
-	puts player_2.nom
-	puts "Quel joueur doit jouer?"
+	puts "D'ailleurs qui voulez-vous faire commencer entre #{player_1.nom} et #{player_2.nom} ?"
+	puts
+	puts "Tapez 1 pour #{player_1.nom}"
+	puts "Tapez 2 pour #{player_2.nom}"
+	print"> "
 	first_player = gets.chomp
-	puts first_player
+		while first_player != "1" && first_player != "2"
+			puts "Désolé! Cette option n'est pas valide! Veuillez recommencer !!!"
+	     	print "> "
+			first_player = gets.chomp
+			break if first_player == "q"
+		end	
 
-		if first_player == player_1.nom
+	#def tesing_player
+		if first_player == "1"
 		first_player = player_1
 		other_player = player_2
-		elsif first_player == player_2.nom
+		elsif first_player == "2"
 		first_player = player_2
 		other_player = player_1
-
-		puts statut[0]
 		end
-	end
-	
-
-	def its_your_turn? 
-		if boardcase.count(first_player.symbol) > boardcase.count(other_player.symbol)
-		player_turn = other_player
-		puts "C'est au tour de #{other_player.name}"
-		else
-		player_turn = first_player
-		puts "C'est au tour de #{first_player.name}"
-		return player_turn
+	#	puts first_player.symbol
+	#	puts other_player.symbol
+	#	my_board.boardcase_array
+		puts my_board.boardcase_array[0].content
+		puts my_board.boardcase_array[4].content
+		#puts first_player
+		#end
+		
+		#def its_your_turn?
+		if my_board.boardcase_array.select {|i| i.content = first_player.symbol} > my_board.boardcase_array.select {|i| i.content = other_player.symbol}
+		#player_turn = other_player
+		#puts "C'est au tour de #{other_player.nom}"
+		#else
+		#player_turn = first_player
+		#puts "C'est au tour de #{first_player.nom}"
+		#end
+		#puts player_turn.symbol
 		end
+
+
+		#def one_tour
+		puts
+		puts "Veuillez sélectionner une case dans le tableau ci dessus"
+		puts "Entrez la lettre puis le numéro de la case"
+		puts my_board.boardcase_array[0].content
+		puts my_board.board_show
+
+
 	end
-
-
 end

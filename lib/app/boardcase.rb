@@ -2,11 +2,11 @@
 
 class BoardCase
 
-	attr_accessor :position , :content
+	attr_accessor :position, :content
 
-	def initialize(position)	
+	def initialize(position, content)	
 		@position = position
-		@content = ""
+		@content = content
 	end
 
 end

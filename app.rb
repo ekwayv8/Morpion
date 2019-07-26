@@ -10,5 +10,8 @@ require 'app/boardcase'
 require 'app/board'
 require 'app/game'
 
-Game.new
+my_game = Game.new
 
+#first_player = Player.new("")
+#other_player = Player.new("")
+#my_game.its_your_turn?(first_player, other_player)
